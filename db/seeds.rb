@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+require 'faker'
+
+Movie.destroy_all
+
+30.times do |movie|
+  Movie.create(title: Faker::Movie.title,
+                overview: Faker::Quote.yoda,
+                poster_url: Faker::LoremFlickr.image(size: "90x110", search_terms: ['movies']),
+                rating: Faker::Number.between(from: 1, to: 5))
+end
